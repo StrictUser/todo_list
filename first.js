@@ -1,24 +1,42 @@
-var list = [];
-var getButton = document.getElementById("btn");
-var newList = document.getElementById("now");
-
-getButton.addEventListener("click", addToList);
-
-function addToList(){
-    var liElem = document.createElement("li");
-    var inputElem = document.createElement("input");
-    inputElem.setAttribute("type", "checkbox");
-    var text = document.getElementById("text");
-    var liText = liElem.appendChild(document.createTextNode(text.value));
-    liElem.appendChild(inputElem);
-    liElem.appendChild(liText);
-    newList.appendChild(liElem);
-    list.push(liText);
-    liElem.addEventListener("click", delFromList);
-    text.value = "";
-    text.focus();
+var Task = function () {
+    this.liElem = document.createElement("li");
+    this.txt = document.getElementById("text").value;
+    return this;
 }
 
-function delFromList(){
-    newList.removeChild(this);
+Task.prototype.checked = document.getElementsByTagName("input").checked;
+Task.prototype.check = function(){
+    if(Task.checked == "true"){
+        this.document.getElementsByTagName("input")[0].setAttribute("class", "cheked");
+    }else{
+        this.document.getElementsByTagName("input")[0].setAttribute("class", "notCheked");
+    }
 }
+
+var task = new Task();
+
+task.check();
+
+var list = {
+    ulElement: document.createElement("ul").setAttribute("id", "ToDoList"),
+    data: [task, task1, task2, ...],
+    addToList: function(){
+        document.addEventListener(event, function(){if((event.type == "keydown")&&(event.keyCode==13)){
+                if (this.txt != "") {
+                    document.getElementsByTagName("li").innerHTML = "<li><input type='checkbox'>" + task.txt + "<span></span></<li>";
+                }
+            }
+        });
+        list.data.push(task);
+    },
+    removeElemFromList: function(){
+        document.getElementById("ToDoList").removeChild(this);
+    },
+    removeByIdFromList: function(){},
+    removeAllFromList: function(){}
+}
+
+task.liElem.onclick = function(){
+    document.getElementsByTagName("span").addEventListener("click", list.removeElemFromList);
+};
+
