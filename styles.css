@@ -48,6 +48,12 @@ body{
     padding-top: 15px;
     font-style: italic;
 }
+#now li:hover{
+
+}
+span{
+    background-image: url("http://icons.iconarchive.com/icons/visualpharm/must-have/256/Delete-icon.png");
+}
 label{
     display: block;
     padding-left: 120px;
@@ -59,7 +65,7 @@ label{
 input[placeholder]{
     font-style: italic;
 }
-input [type="checkbox"]:checked{
+.checked{
     text-decoration: line-through;
     opacity: 0.4;
 }
