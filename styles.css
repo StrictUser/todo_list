@@ -29,6 +29,14 @@ body{
     font-size: 2em;
     color: darkslateblue;
 }
+label{
+    display: block;
+    padding-left: 120px;
+    height: auto;
+    font-size: 2em;
+    color: brown;
+    opacity: 0.6;
+}
 #btn{
     width: 100px;
     height: 50px;
@@ -40,27 +48,30 @@ body{
     list-style: none;
 }
 #now li{
-    width: 450px;
-    height: 40px;
+    position: relative;
+    width: 452px;
     font-size: 1.5em;
     color: darkslategray;
     border: 1px solid #E9967A;
-    padding-top: 15px;
     font-style: italic;
-}
-#now li:hover{
+    word-break: break-all;
+    word-wrap: break-word;
 
 }
-span{
-    background-image: url("http://icons.iconarchive.com/icons/visualpharm/must-have/256/Delete-icon.png");
+/**/
+#now li div[name="del"]{
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    display: inline;
+    height: 32px;
+    width: 32px;
+    background-image: url("http://icons.iconarchive.com/icons/visualpharm/must-have/32/Delete-icon.png");
 }
-label{
-    display: block;
-    padding-left: 120px;
-    height: 50px;
-    font-size: 2em;
-    color: brown;
-    opacity: 0.6;
+#now label{
+    font-size: 1.5em;
+    padding-left: 10px;
+    width: 80%;
 }
 input[placeholder]{
     font-style: italic;
