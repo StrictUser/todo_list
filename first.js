@@ -1,42 +1,43 @@
 var Task = function () {
     this.liElem = document.createElement("li");
     this.txt = document.getElementById("text").value;
-    return this;
-}
-
-Task.prototype.checked = document.getElementsByTagName("input").checked;
-Task.prototype.check = function(){
-    if(Task.checked == "true"){
-        this.document.getElementsByTagName("input")[0].setAttribute("class", "cheked");
-    }else{
-        this.document.getElementsByTagName("input")[0].setAttribute("class", "notCheked");
-    }
-}
-
-var task = new Task();
-
-task.check();
-
-var list = {
-    ulElement: document.createElement("ul").setAttribute("id", "ToDoList"),
-    data: [task, task1, task2, ...],
-    addToList: function(){
-        document.addEventListener(event, function(){if((event.type == "keydown")&&(event.keyCode==13)){
-                if (this.txt != "") {
-                    document.getElementsByTagName("li").innerHTML = "<li><input type='checkbox'>" + task.txt + "<span></span></<li>";
-                }
-            }
-        });
-        list.data.push(task);
-    },
-    removeElemFromList: function(){
-        document.getElementById("ToDoList").removeChild(this);
-    },
-    removeByIdFromList: function(){},
-    removeAllFromList: function(){}
-}
-
-task.liElem.onclick = function(){
-    document.getElementsByTagName("span").addEventListener("click", list.removeElemFromList);
 };
 
+Task.prototype.check = function(){
+    if(this.checked === "true"){
+        document.getElementsByTagName("input")[0].setAttribute("class", "cheked");
+    }else{
+        document.getElementsByTagName("input")[0].setAttribute("class", "notCheked");
+    }
+};
+
+Task.prototype.del = function(){
+    document.getElementById("now").removeChild(this);
+};
+
+var listOne = {
+    ulElement: document.createElement("ul"),
+    data: [],
+    addToList: function(){
+        if(event.keyCode==13){
+            var task = new Task();
+            if (task.txt !== "") {
+                task.liElem.innerHTML = "<label><input type='checkbox'>" + task.txt + "</label><div name='del'></div>";
+                listOne.ulElement.appendChild(task.liElem);
+                document.getElementById("list").appendChild(listOne.ulElement);
+            }
+            /*if(document.getElementsByTagName("div").hasAttribute("name")){
+                document.getElementsByTagName("div").addEventListener("click", task.del);
+            }*/
+
+            listOne.data.push(task);
+            console.log(listOne.data);
+            document.getElementById("text").value = "";
+            document.getElementById("text").focus();
+        }
+
+    }
+};
+
+document.getElementById("text").addEventListener("keydown", listOne.addToList);
+listOne.ulElement.setAttribute("id", "now");
