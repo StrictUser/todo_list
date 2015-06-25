@@ -1,5 +1,7 @@
-/* reset browser styles */
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+/** reset browser styles **/
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big,
+cite, code, del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var, b, u, i, center,
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,
 figure, figcaption, footer, header, menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
@@ -12,20 +14,25 @@ time, mark, audio, video {
 article, aside, details, figcaption, figure, footer, header, menu, nav, section {
     display: block;
 }
-/* end reset browser styles */
+/** end reset browser styles **/
 
-/*common styles*/
+
+/** styles to form **/
+
 body{
     background-color: #F5FFFA;
 }
 #list{
-    margin: auto;
-    width: 600px;
-    margin-top: 200px;
+    width: 60%;
+    height: 20%;
+}
+.form{
+    position: absolute;
+    right: 35%;
+    top: 15%;
 }
 #text{
-    width: 450px;
-    height: 50px;
+    width: 60%;
     font-size: 2em;
     color: darkslateblue;
 }
@@ -37,46 +44,82 @@ label{
     color: brown;
     opacity: 0.6;
 }
-#btn{
-    width: 100px;
-    height: 50px;
+input[placeholder]{
+    font-style: italic;
+}
+input[type="button"]{
+    width: 12%;
     color: darkslateblue;
     background-color: #FFD700;
-    font-size: 2em;
+    font-size: 1.7em;
 }
-#now{
+#secondBtn{
+    width: 19%;
+}
+/** end styles to form **/
+
+
+/** styles to workArea **/
+
+/* common styles */
+#workArea{
+    width: 100%;
+}
+ul{
     list-style: none;
+    position: absolute;
+    top: 30%;
+    width: 30%;
 }
-#now li{
+li{
     position: relative;
-    width: 452px;
-    font-size: 1.5em;
     color: darkslategray;
     border: 1px solid #E9967A;
     font-style: italic;
     word-break: break-all;
     word-wrap: break-word;
-
 }
-/**/
-#now li div[name="del"]{
+li:hover div[name="del"]{
     position: absolute;
     top: 5px;
-    right: 0px;
+    right: 0;
     display: inline;
     height: 32px;
     width: 32px;
     background-image: url("http://icons.iconarchive.com/icons/visualpharm/must-have/32/Delete-icon.png");
 }
-#now label{
-    font-size: 1.5em;
-    padding-left: 10px;
-    width: 80%;
-}
-input[placeholder]{
-    font-style: italic;
-}
 .checked{
     text-decoration: line-through;
     opacity: 0.4;
 }
+/* end common styles */
+
+
+/** different styles **/
+
+/* first list */
+#numOne{
+    left: 10%;
+}
+#numOne li{
+    left: 0;
+}
+#numOne label{
+    padding-left: 10px;
+    width: 80%;
+}
+/* end first list */
+
+/* second list */
+#numTwo{
+    right: 10%;
+}
+#numTwo li{
+    right: 0;
+}
+#numTwo label{
+    padding-left: 10px;
+    width: 80%;
+}
+/* end second list */
+/** end styles to workArea **/
