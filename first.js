@@ -4,16 +4,18 @@ var Task = function () {
 };
 
 Task.prototype.check = function(){
-    if(Task.liElem.hasChildNodes("input").hasAttribute("checked") == "true"){
-        Task.liElem.children[0][0].setAttribute("class", "cheked");
+    var changedElem = Task.liElem.children[0];
+    var checkElem = changedElem[0].checked;
+    if(checkElem == "true"){
+        changedElem.setAttribute("style", "text-decoration: line-through");
     }else{
-        Task.liElem.children[0][0].setAttribute("class", "notCheked");
+        changedElem.setAttribute("class", "notChecked");
     }
 };
 
 Task.prototype.del = function(id){
-    var delElem = document.getElementsByTagName("div");
-    if(delElem.hasAttribute("name")=="del"){
+    var delElem = Task.liElem.childNodes.checked;
+    if(delElem == "true"){
         if(id=="numOne"){
             document.getElementById("numOne").removeChild(this);
         }else if(id=="numTwo"){
@@ -40,9 +42,13 @@ var listOne = {
                 document.getElementById("workArea").appendChild(listOne.ulElementTwo);
             }
 
-            listOne.data.push(task);
-            document.getElementById("text").value = "";
-            document.getElementById("text").focus();
+        task.liElem.querySelector("div").addEventListener("click", task.del);
+        listOne.data.push(task);
+        document.getElementById("text").value = "";
+        document.getElementById("text").focus();
+    },
+
+    dragAndDrop: function(){
 
     }
 };
@@ -52,39 +58,3 @@ document.getElementById("secondBtn").addEventListener("click", listOne.addToList
 
 listOne.ulElementOne.setAttribute("id", "numOne");
 listOne.ulElementTwo.setAttribute("id", "numTwo");
-
-
-
-var dragElem = document.getElementById("numOne").querySelector("div[name]");
-
-ball.onmousedown = function(e) {
-
-    var coords = getCoords(ball);
-    var shiftX = e.pageX - coords.left;
-    var shiftY = e.pageY - coords.top;
-
-    ball.style.position = 'absolute';
-    document.body.appendChild(ball);
-    moveAt(e);
-
-    ball.style.zIndex = 1000; // над другими элементами
-
-    function moveAt(e) {
-        ball.style.left = e.pageX - shiftX + 'px';
-        ball.style.top = e.pageY - shiftY + 'px';
-    }
-
-    document.onmousemove = function(e) {
-        moveAt(e);
-    };
-
-    ball.onmouseup = function() {
-        document.onmousemove = null;
-        ball.onmouseup = null;
-    };
-
-}
-
-ball.ondragstart = function() {
-    return false;
-};
