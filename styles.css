@@ -59,6 +59,19 @@ input[type="button"]{
 /** end styles to form **/
 
 
+/** start styles to alert **/
+
+#alert{
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    background-color: darkmagenta;
+    font: normal 500 1.5em "Comic-Sans";
+    color: #F5FFFA;
+}
+/** end styles to alert **/
+
+
 /** styles to workArea **/
 
 /* common styles */
