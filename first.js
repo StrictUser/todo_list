@@ -13,26 +13,36 @@ Task.prototype.check = function(){
     }
 };
 
-Task.prototype.del = function(id){
-    var delElem = Task.liElem.childNodes.checked;
-    if(delElem == "true"){
-        if(id=="numOne"){
-            document.getElementById("numOne").removeChild(this);
-        }else if(id=="numTwo"){
-            document.getElementById("numTwo").removeChild(this);
-        }
-    }
+Task.prototype.del = function(){
+    var parent = document.getElementsByTagName("ul");
+    var child = Task.liElem;
+    parent.removeChild(child);
 };
 
 var listOne = {
     ulElementOne: document.createElement("ul"),
     ulElementTwo: document.createElement("ul"),
     data: [],
-    addToList: function(id){
+    addToList: function(){
 
         var task = new Task();
+        listOne.data.push(task);
 
-            if ((task.txt !== "") && (this.id == "firstBtn")) {
+        for(var i=0; i<listOne.data.length-1; i++){
+            var text = document.getElementById("text").value;
+            if(text.localeCompare(listOne.data[i]["txt"]) === 0){
+                console.log(listOne.data[i]["txt"]);
+                document.getElementById("alert").innerHTML = "<p>Text '" + text + "' is already used!</p>";
+                setTimeout(function(){document.getElementById("alert").style.display = "none"}, 1000);
+                setTimeout(function(){
+                    document.getElementById("alert").innerHTML = "<p></p>";
+                    document.getElementById("alert").style.display = "block";
+                }, 1500);
+            }else{
+
+            }
+        }
+            if ((task.txt !== "") && (this.id == "firstBtn")){
                 task.liElem.innerHTML = "<label><input type='checkbox'>" + task.txt + "</label><div name='del'></div>";
                 listOne.ulElementOne.appendChild(task.liElem);
                 document.getElementById("workArea").appendChild(listOne.ulElementOne);
@@ -43,15 +53,59 @@ var listOne = {
             }
 
         task.liElem.querySelector("div").addEventListener("click", task.del);
-        listOne.data.push(task);
+
         document.getElementById("text").value = "";
+
         document.getElementById("text").focus();
+
+
     },
-
     dragAndDrop: function(){
+        var dragElem = document.getElementsByTagName("li")[0];
 
+        dragElem.onmousedown = function(e) {
+
+            function getCoords(elem) {
+                var box = elem.getBoundingClientRect();
+
+                return {
+                    top: box.top + pageYOffset,
+                    left: box.left + pageXOffset
+                };
+
+            }
+
+            var coords = getCoords(dragElem);
+            var shiftX = e.pageX - coords.left;
+            var shiftY = e.pageY - coords.top;
+
+            dragElem.style.position = "absolute";
+            document.body.appendChild(dragElem);
+            moveAt(e);
+            dragElem.style.zIndex = 1000;
+
+            function moveAt(e) {
+                dragElem.style.left = e.pageX - shiftX + 'px';
+                dragElem.style.top = e.pageY - shiftY + 'px';
+            }
+
+            document.onmousemove = function(e) {
+                moveAt(e);
+            };
+
+            dragElem.onmouseup = function() {
+                document.onmousemove = null;
+                dragElem.onmouseup = null;
+            };
+
+        };
+
+        dragElem.ondragstart = function() {
+            return false;
+        };
     }
-};
+}
+;
 
 document.getElementById("firstBtn").addEventListener("click", listOne.addToList);
 document.getElementById("secondBtn").addEventListener("click", listOne.addToList);
