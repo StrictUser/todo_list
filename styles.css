@@ -62,9 +62,14 @@ input[type="button"]{
     position: absolute;
     top: 20%;
     left: 40%;
+    height: 10%;
+    width: 30%;
     background-color: darkmagenta;
+    border: solid 1px black;
     font: normal 500 1.5em "Comic-Sans";
     color: #F5FFFA;
+    padding: 10px;
+    z-index: 1000;
 }
 /** end styles to alert **/
 
@@ -83,11 +88,8 @@ ul{
 }
 li{
     position: relative;
-    color: darkslategray;
-    border: 1px solid #E9967A;
-    font-style: italic;
-    word-break: break-all;
-    word-wrap: break-word;
+    margin-top: 5px;
+    left: 25%;
 }
 li:hover div[name="del"]{
     position: absolute;
@@ -119,8 +121,26 @@ li:hover div[name="del"]{
     left: 0;
 }
 #needDo label{
-    padding-left: 10px;
-    width: 80%;
+    width: 60%;
+    padding: 0;
+    position: inherit;
+    border: 1px solid #E9967A;
+}
+#needDo p{
+    display: inline;
+    color: darkslategray;
+    font-style: italic;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+input.doneButton{
+    display: inline;
+    position: absolute;
+    background-color: chartreuse;
+    font-size: 1.5em;
+    right: 35px;
+    width: auto;
+    top: 0;
 }
 /* end list 'needDo' */
 
